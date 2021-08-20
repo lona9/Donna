@@ -75,7 +75,7 @@ class Bot(BotBase):
         await self.invoke(ctx)
 
       else:
-        await ctx.send("Aún no estoy listo para recibir comandos, por favor espera unos segundos.")
+        await ctx.send("Aún no estoy lista para recibir comandos, por favor espera unos segundos.")
 
   async def on_connect(self):
     print('bot connected')
@@ -105,7 +105,7 @@ class Bot(BotBase):
 
       self.scheduler.start()
 
-      await self.log.send("Estoy listo, estoy listo, estoy listo, estoy listo!")
+      await self.log.send("Estoy lista, estoy lista, estoy lista, estoy lista!")
       self.ready = True
       print("bot ready")
 

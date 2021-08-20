@@ -20,8 +20,8 @@ class Reminders(Cog):
       raw_time = int("".join([x for x in time if x.isdigit()]))
       time_unit = time[-1]
 
-      if not time_unit.isalpha():
-          await ctx.send("Ingresa un periodo de tiempo válido!")
+      if not time_unit.isalpha() or not time_unit == "s" or not time_unit == "m" or not time_unit == "h" or not time_unit == "d":
+          await ctx.send("Ingresa un periodo de tiempo válido! El formato debe ser la cantidad de tiempo con la unidad de medida aceptada (s, m, h o d), por ejemplo: *$r 3h lavar la loza*")
 
       else:
           time_to_add = raw_time * time_conversion[time_unit]
