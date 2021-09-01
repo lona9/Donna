@@ -69,6 +69,7 @@ class Tasks(Cog):
   async def on_raw_reaction_add(self, payload):
       if payload.member.bot:
           pass
+
       else:
           if payload.emoji.name == "❌":
               try:

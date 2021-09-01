@@ -40,6 +40,8 @@ class Reminders(Cog):
 
           db.commit()
 
+          print("committed")
+
           await ctx.send(f"Te recordaré sobre **{remindertext}** en **{time}**.")
 
   @tasks.loop(seconds = 1)
@@ -59,25 +61,29 @@ class Reminders(Cog):
                 continue
 
             else:
-                remindertext = db.record("SELECT ReminderText FROM reminders WHERE ReminderID = ?", reminder_id)
+                try:
+                    remindertext = db.record("SELECT ReminderText FROM reminders WHERE ReminderID = ?", reminder_id)
 
-                reminderauthor = db.record("SELECT ReminderAuthor FROM reminders WHERE ReminderID = ?", reminder_id)
+                    reminderauthor = db.record("SELECT ReminderAuthor FROM reminders WHERE ReminderID = ?", reminder_id)
 
-                reminderchannel = db.record("SELECT ReminderChannel FROM reminders WHERE ReminderID = ?", reminder_id)
+                    reminderchannel = db.record("SELECT ReminderChannel FROM reminders WHERE ReminderID = ?", reminder_id)
 
-                remindertext = str(remindertext[0])
+                    remindertext = str(remindertext[0])
 
-                reminderauthor = str(reminderauthor[0])
+                    reminderauthor = str(reminderauthor[0])
 
-                channel = int(reminderchannel[0])
+                    channel = int(reminderchannel[0])
 
-                channel = self.bot.get_channel(channel)
+                    channel = self.bot.get_channel(channel)
 
-                await channel.send(f"{reminderauthor}: recuerda **{remindertext}**!")
+                    await channel.send(f"{reminderauthor}: recuerda **{remindertext}**!")
 
-                db.execute("DELETE FROM reminders WHERE ReminderID = ?", reminder_id)
+                    db.execute("DELETE FROM reminders WHERE ReminderID = ?", reminder_id)
 
-                db.commit()
+                    db.commit()
+                    
+                except:
+                    pass
 
   @check_reminder.before_loop
   async def before_check(self):
