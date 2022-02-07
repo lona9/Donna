@@ -13,3 +13,9 @@ CREATE TABLE IF NOT EXISTS reminders (
   ReminderAuthor VARCHAR,
   ReminderChannel VARCHAR
 );
+
+CREATE TABLE IF NOT EXISTS actas (
+  Persona VARCHAR PRIMARY KEY,
+  PersonaMention VARCHAR,
+  PersonaCount NUMERIC DEFAULT 0
+);
