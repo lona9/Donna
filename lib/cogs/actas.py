@@ -22,6 +22,7 @@ class Actas(Cog):
           await ctx.send("...")
           await ctx.send("...")
           await ctx.send(f"{person_mention}!!!")
+          await ctx.send("Link del Notion: https://www.notion.so/cornershop/BI-Meetings-b61fa187859145efbc3df92f6e82e1c7")
 
           db.execute("UPDATE actas SET PersonaCount = PersonaCount + 1 WHERE PersonaMention = ?", chosen_person)
           db.commit()
